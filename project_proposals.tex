@@ -1,0 +1,122 @@
+\documentclass[fleqn,reqno,10pt]{article}
+
+\usepackage{myarticlestyledefault}
+
+\title{Project proposals}
+\author{Michael Franke}
+\date{last update: \today}
+
+\usepackage[margin = 2.5cm]{geometry}
+\newcommand{\scope}[1]{\hfill\textcolor{gray}{[#1]}}
+
+\begin{document}
+\maketitle
+
+\section{Alternative-dependent interpretation of probability expressions}
+
+Recent linguistic theories of verbal probability expressions like \emph{probably}, \emph{certainly} or \emph{possibly} have postulated that their meaning is given by a threshold-semantics \citep[e.g.][]{Yalcin2010:Probability-Ope}. For example, \emph{It will probably rain} is true iff the probability of rain according to the speaker is higher than some contextually specified $\theta_{\text{probably}}$. A few studies have looked at the different interpretations of probability expressions \citep[e.g.][]{wind1996}, i.e., trying to determine where exactly a threshold like $\theta_{\text{probably}}$ should be. One case has gained some recent coverage in the online media:
+%
+\begin{itemize}
+\item \url{https://www.vedrashko.com/thisisbig/how-likely-is-probably}
+\item \url{https://github.com/zonination/perceptions}
+\end{itemize}
+%
+Building on the latter, it would be interesting to see if/how people's judgements depend on the alternative expressions they encounter in the environment. For example, recent studies from psycholinguistics have shown that which alternative descriptions are present in an experiment can influence the interpretation of certain words \citep[e.g.][]{DegenTanenhaus2012:Processing-Scal,Franke2016:Task-types-link}. This project would experimentally investigate the interpretation of various probability expressions and manipulate the alternative expressions offered to different subjects. This would help to come to understand if the thresholds postulated in the literature are better thought of as pragmatic or semantic.
+
+\scope{experimental, non-technical, course project, BSc thesis} 
+
+
+
+\section{Pragmatic reasoning about conditionals }
+
+Devise, implement and test a model of the use and interpretation of conditional sentences in the style of the Rational Speech Act modelling approach.
+
+\scope{modeling, technical, linguistics, logic, MSc thesis}
+
+\section{Measure reaction times for reference games; diffusion drift models}
+
+Reference games are the motivating experimental paradigm for the Rational Speech Act model \citep{GoodmanFrank2016:Pragmatic-Langu}. Many replications exist, but most attention has focused on accounting for choice probabilities. Much less attention has been paid to the process of decision making. This project would try to shed light on how fast participants come to form a decision. After experimental measurement of choice reaction times we would look at a statistical model that jointly predicts choice probabilities and reaction times, like the diffusion drift model \citep[e.g.][]{RatcliffMcKoon2008:The-Diffusion-D} or a form of ACT-R.
+
+\scope{experimental, modeling, technical, BSc or MSc thesis}
+
+\section{Combining mouse- and eyetracking}
+
+Replicate the study of \citet{RoettgerFranke2017:Information-int} which used mousetracking, but also record participants eye-gazes as well.
+
+\scope{experimental (difficult) in the lab, MSc thesis}
+
+\section{Modeling politeness in language use}
+
+Building on recent models of polite language use (Tessler \& Yoon), this project would try to incorporate the dimensions of politeness outlined in the seminal work by Brown \& Levinson, namely \emph{face threats} and \emph{rate of imposition}, into a Rational Speech Act model of polite language use.
+
+\scope{modeling, linguistics, sociolinguistics, BSc or MSc thesis}
+
+\section{Reference games with topic choice}
+
+Reference games are a widely studied experimental paradigm. In the production part of these experiments, participants are told to select a description of a referent which is highlighted as the topic of conversation in each experimental trial. This project collects data on a related event, namely where the speaker is allowed to freely choose which referent to talk about first, and will then produce a description to communicate to the listener. The hypothesis is that this topic choice is affected by factors such as visual salience, but might also lead to a strategic choice of topic, namely that participants choose expressions for which they have an efficient utterance to communicate it. Finally, it is interesting to compare choices of topics with the results from listener prior elicitation conditions.
+
+\scope{experimental (easy), project or BSc thesis}
+
+\section{Evolution of semantic meaning via pragmatic language use}
+
+Many (agent-based) models of the evolution of semantic meaning do not have a particularly sophisticated vision of how agents use and interpret language when they interact. In response, \citet{BrochhagenFranke2016:Learning-biases,BrochhagenFranke2017:Effects-of-tran} have used the Rational Speech Act model to look at simulations addressing the question: which semantic meaning would evolve if agents used language as described by the Rational Speech Act model. In this project, this approach could be applied, for example, to studying the evolution of meaning of gradable adjective, color terms, spatial expressions or a similar interesting domain. This could also use reference games with obects from a multi-dimensional feature space.
+
+\scope{simulation, programming, modeling, language evolution, project, BSc or MSc thesis}
+
+\section{Web-app for (non-)cooperative MasterMind}
+
+We program a web-application that has a little AI and plays a variant of mastermind with our subjects \citep[taking inspiration from][]{VerbruggeMol2008:Learning-to-App}. Subjects see, say, 3 colored objects from a pool of 3 shapes in 3 colors, no repetition possible, but order matters, so we have 504 possible ``world states''. The AI needs to guess the world state. Subjects give feedback on each guess of the AI. Feedback is given by constructing a sentence from a reasonable number of alternative expressions at different positions of the sentence, e.g.:
+\begin{itemize}
+\item quantifier: {at least one of the, several of the, some of the, all of the, …} (some theoretically interesting ones)
+\item object: {squares, blue squares, triangles, green circles, …} (all nine possibilities)
+\item predicate: {is/are in the right place, has/have the right color, ...}
+\end{itemize}
+This can be realized with simple dropdown menus. Feedback must be true (easy and fast to check with a precomputed lookup table). In the cooperative version subjects win if the AI correctly guesses the sequence after, say, 7 rounds. In the uncooperative version subjects win if the AI fails to guess the correct sequence for, say, 10 rounds (the precise numbers need to be chosen so that the game is fun to play, not too easy not too hard, which depends on how smart the AI is). We can measure the informativity of a feedback description quite simply in the program in terms of the number of contextually live possibilities ruled out by the given description at the current state of play. Cooperative language users should tend to choose more informative messages; uncooperative language users should ideally send maximally uninformative, yet true messages. It would be interesting to look at (i) differences in language use between cooperative and uncooperative plays, and possibly (ii) the amount of uncooperativity in choices (measured quantitatively (!) in terms of contextual informativity) as they develop over time.
+
+\scope{programming, web-app, group project or MSc thesis}
+
+\section{Inference of speaker competence}
+
+This project is about how different expressions might lead to different inferences about how knowledgeable the speaker is. For example, hearing Jones say \emph{I ate all of the cake} will not usually have us believe that Jones is in any way uncertain about the amount of cake he ate. This gets more interesting when we come to comparing expressions like \emph{up to 10} to \emph{no more then 10} and \emph{close to 10 but not more} etc. This project would try to collect data using web-based experiments.
+
+\scope{experimental, single project, possibly BSc thesis}
+
+\section{Argumentative language use}
+
+Much linguistic theories on language use assume that the speaker wants to ideally inform the listener, i.e., transfer a maximum of relevant and true information for the sake of the listener's knowledge. However, other forms of discourse exist. An example is \emph{argumentative discourse} where interlocutors hold different opinions about some topic and give arguments in order to persuade one another of their own view \citep[e.g.][]{AnscombreDucrot1983:Largumentation-,MerinInfoRelSocialDecisionmaking1999,GlazerRubinstein2006:A-Game-Theoreti}. This project has two parts which can be independently executed or done in conjunction:
+\begin{itemize}
+\item In the \textbf{experimental part}, we implement an experiment in which a speaker chooses expressions to influence the hearer of a particular conclusion, e.g., report on the exam results of a class of students \citep[using similar stimuli as][]{Cummins2012:Using-embedded-}.
+\item In the \textbf{modeling part}, we extend a model of goal-directed choice of expressions to incorporate a notion of argument strength \citep[e.g., the notion of argumentative relevance of][]{MerinInfoRelSocialDecisionmaking1999}.
+
+\scope{experimental and/or modeling, project BSc and MSc}
+
+\end{itemize}
+
+\section{Bayesian data analysis for a model of hyperbolic language use}
+
+\citet{KaoWu2014:Nonliteral-Unde} suggested an interesting model of how people can interpret non-literal language use. The model is intuitive and backed up by empirical data in the paper. However, the data analysis in the paper leaves some room for exploration. This project would take the data from the original study, and use an implementation of the model to practice a Bayesian data analysis. The goal of this project is to scrutinize the model, i.e., check which aspects of the data the model explains well, and which it might have trouble with.
+
+\scope{Bayesian data analysis, programming, cognitive modeling, individual project or BSc thesis}
+
+
+\section{Wason selection task and optimal data selection}
+
+The Wason selection task is a classic from the psychology of reasoning. \citet{OaksfordChater1994:A-Rational-Anal} offer a rationalization of participants' choice behavior in terms of \emph{optimal data selection}. This model makes some crucial assumptions which influence the predicted outcome. This project would explore the model by implementing it and changing a number of assumptions. For example, the original model assumes that participants' seek to distinguish between two hypotheses ($p$ and $q$ are probabilistically independent vs.~$p$ makes $q$ likely). There are other possible hypotheses relevant to the interpretation of conditional sentences which arise if we interpret a conditional as an answer to a particular \emph{question under discussion}, such as \emph{What happens if $p$?} vs. \emph{Under which circumstances $q$?}. The project could implement a model and check its predictions with these extended set of participant hypotheses. It could also gather data or use existing data to compare model variants.
+
+\scope{psychology of reasoning, conditionals, linguistics, cognitive modeling, BSc or MSc thesis}
+
+\section{Statistical model comparison for models of vague gradable expressions}
+
+The interpretation of gradable adjectives, like \emph{tall} or \emph{short}, but also of vague quantifiers like \emph{many} and \emph{few}, seems to depend on statistical world knowledge. At least three formal models of how a \emph{prior expectation}, e.g., about the tallness of a person, can lead to choices of adequacy of a description like \emph{John is tall}: a fixed-threshold hypothesis \citep{FernandoKamp1996:Expecting-Many}, an evolutionary account \citep{QingFranke2014:Gradable-Adject}, and a pragmatic reasoning account \citep{LassiterGoodman2015:Adjectival-vagu}. This project would implement a (Bayesian) model comparison of these approaches based on existing experimental data.
+
+\scope{Bayesian data analysis, programming, linguistics, cognitive modeling, project or BSc/MSc thesis}
+
+\section{Preferences for objective  meaning in referential expressions}
+
+Not every word's semantic meaning is equally uncontroversial. What the word \emph{flat} means is less subjective than what \emph{beautiful} means. Speakers of a language should know (at least roughly) which words are more subjective than others. A theory of rational expression choice would predict that speakers would therefore preferably describe a given referent using words with a less subjective meaning (because that minimizes the chance of misunderstanding, when compared to the use of words that have a more subjective meaning; after all, the listener might not agree which of the dogs in front of us is \emph{beautiful}). In this project, we will set up an experiment in which participants choose expressions to refer to objects, such that they choice options are more or less subjective. We will investigate whether the prediction that less subjective expressions are preferred is supported by the data.
+
+\scope{experimental, some modeling, project or BSc thesis (MSc thesis if extended)}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}
