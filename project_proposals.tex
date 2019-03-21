@@ -1,6 +1,34 @@
 \documentclass[fleqn,reqno,10pt]{article}
 
-\usepackage{myarticlestyledefault}
+%========================================
+% Packages
+%========================================
+
+\usepackage[nobiblatex]{mypackages}
+\usepackage[natbib=true,style=authoryear-comp,backend=bibtex,doi=false,url=false]{biblatex}
+\bibliography{MyRefGlobal}
+\usepackage{myenvironments}
+\usepackage{mycommands}
+
+%========================================
+% Standard Layout
+%========================================
+
+% Itemize
+\renewcommand{\labelitemi}{\large{$\mathbf{\cdot}$}}    % itemize symbols
+\renewcommand{\labelitemii}{\large{$\mathbf{\cdot}$}}
+\renewcommand{\labelitemiii}{\large{$\mathbf{\cdot}$}}
+\renewcommand{\labelitemiv}{\large{$\mathbf{\cdot}$}}
+% Description
+\renewcommand{\descriptionlabel}[1]{\hspace\labelsep\textsc{#1}}
+
+% Figure Captions
+\usepackage{caption} % use corresponding myfiguresize!
+\setlength{\captionmargin}{20pt}
+\renewcommand{\captionfont}{\small}
+\setlength{\belowcaptionskip}{7pt} % standard is 0pt
+
+
 
 \title{Project proposals}
 \author{Michael Franke}
@@ -25,14 +53,6 @@ Building on the latter, it would be interesting to see if/how people's judgement
 
 \scope{experimental, non-technical, course project, BSc thesis} 
 
-
-
-\section{Pragmatic reasoning about conditionals }
-
-Devise, implement and test a model of the use and interpretation of conditional sentences in the style of the Rational Speech Act modelling approach.
-
-\scope{modeling, technical, linguistics, logic, MSc thesis}
-
 \section{Measure reaction times for reference games; diffusion drift models}
 
 Reference games are the motivating experimental paradigm for the Rational Speech Act model \citep{GoodmanFrank2016:Pragmatic-Langu}. Many replications exist, but most attention has focused on accounting for choice probabilities. Much less attention has been paid to the process of decision making. This project would try to shed light on how fast participants come to form a decision. After experimental measurement of choice reaction times we would look at a statistical model that jointly predicts choice probabilities and reaction times, like the diffusion drift model \citep[e.g.][]{RatcliffMcKoon2008:The-Diffusion-D} or a form of ACT-R.
@@ -41,7 +61,7 @@ Reference games are the motivating experimental paradigm for the Rational Speech
 
 \section{Combining mouse- and eyetracking}
 
-Replicate the study of \citet{RoettgerFranke2017:Information-int} which used mousetracking, but also record participants eye-gazes as well.
+Replicate the study of \citet{RoettgerFranke2018:Evidential-stre} which used mousetracking, but also record participants' eye-gazes as well.
 
 \scope{experimental (difficult) in the lab, MSc thesis}
 
@@ -59,7 +79,7 @@ Reference games are a widely studied experimental paradigm. In the production pa
 
 \section{Evolution of semantic meaning via pragmatic language use}
 
-Many (agent-based) models of the evolution of semantic meaning do not have a particularly sophisticated vision of how agents use and interpret language when they interact. In response, \citet{BrochhagenFranke2016:Learning-biases,BrochhagenFranke2017:Effects-of-tran} have used the Rational Speech Act model to look at simulations addressing the question: which semantic meaning would evolve if agents used language as described by the Rational Speech Act model. In this project, this approach could be applied, for example, to studying the evolution of meaning of gradable adjective, color terms, spatial expressions or a similar interesting domain. This could also use reference games with obects from a multi-dimensional feature space.
+Many (agent-based) models of the evolution of semantic meaning do not have a particularly sophisticated vision of how agents use and interpret language when they interact. In response, \citet{BrochhagenFranke2017:Effects-of-tran} have used the Rational Speech Act model to look at simulations addressing the question: which semantic meaning would evolve if agents used language as described by the Rational Speech Act model. In this project, this approach could be applied, for example, to studying the evolution of meaning of gradable adjective, color terms, spatial expressions or a similar interesting domain. This could also use reference games with obects from a multi-dimensional feature space.
 
 \scope{simulation, programming, modeling, language evolution, project, BSc or MSc thesis}
 
@@ -146,6 +166,14 @@ belief learning under uncertainty. We will compare such a rational belief learni
 choice model to data from an experiment.
 
 \scope{experimental, cognitive modeling, rationality; BSc thesis (ambitious!) or MSc thesis}
+
+\section{Scalar implicatures with probability expressions}
+
+Extend the final model of the second chapter of \url{problang.org} to include also probability
+expressions, i.e., yielding complete utterances of the form ``Possibly some of the apples are
+red.'' Additionally, experimental data could be collected to test the model's predictions.
+
+\scope{pragmatics, webppl, programming, experimental; project, possibly BSc thesis}
 
 \printbibliography[heading=bibintoc]
 
