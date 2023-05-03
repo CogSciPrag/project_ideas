@@ -1,0 +1,99 @@
+\documentclass[fleqn,reqno,10pt]{article}
+
+\usepackage{myarticlestyledefault}
+\usepackage[margin=2cm]{geometry}
+
+\newcommand{\pt}[1]{\textcolor{CSP-accent-1}{[PT: #1]}}
+\newcommand{\faca}[1]{\textcolor{CSP-accent-2}{[FC: #1]}}
+
+\title{Project ideas}
+\author{CSP}
+\date{Last compiled: \today}
+
+\begin{document}
+\maketitle
+
+\section{Relevance judgements and LLMs}
+
+\begin{enumerate}
+  \item probe the human-likeness of LLM's relevance judgements w/ and w/o prompting
+  \item compare to human data
+\end{enumerate}
+
+\section{How false beliefs spread through language}
+
+\subsection{Argumentative RSA agents}
+
+\begin{itemize}
+  \item run a multi-agent simulation, similar to prior literature \citep{Zollman2013:Network-Epistem}, on how false beliefs spread and amplify in a social network
+  \begin{itemize}
+    \item agents observe data from experiments
+    \item in previous work: agents showed their data to other agents
+    \item here: agents describe their findings in language
+    \item use RSA model with argumentative speakers
+    \item listeners can be naive or argumentation-aware
+    \item check impact on false belief propagation
+  \end{itemize}
+\end{itemize}
+
+\subsection{Argumentative RSA agents}
+
+\begin{itemize}
+  \item as before but with griceChain agents instead of RSA
+\end{itemize}
+
+\section{LLMs and causal reasoning}
+
+\subsection{Squeeze causal intuitions out of LLMs}
+
+\begin{itemize}
+  \item use LLMs to ``construct'' intuitive causal models of everyday events
+  \item test whether there are biases (e.g., towards specific causal structures)
+\end{itemize}
+
+\section{LLM-chain related}
+
+Below some student project ideas which would help expand and substantiate the framework can be found.
+
+\begin{enumerate}
+    \item applying SIFD to new datasets
+        \begin{itemize}
+            \item to extend the reference game or grounded language use setting to more naturalistic datasets, Google search images or MS COCO images could be used.
+            \item integrating the image captioning endpoint for the utterance proposal based on actual images can be part of project or be implemented by us.
+        \end{itemize}
+    \item integrating new communicative tasks; extending the pipeline to more complex tasks could allow to show the advantages of the controlled pipeline more clearly
+        \begin{itemize}
+            \item one idea that we discussed concerned the use of different compound utility functions (e.g., akin to argumentative language ideas or the inclusion of particular relevance representations) \pt{not sure about the details, needs to be fleshed out}
+            \item another idea is to focus on tasks which strongly show the advantage of considering in-situ generated alternatives generated. For instance, answering wh-questions (or questions in general) might require reasoning about the speaker's background knowledge (e.g., sensible information or goals the person might want to pursue). \pt{this is essentially a transfer / extension of the QA model to SIFD} Furthermore, the iterative pipeline might allow to model QA based on conversation history which updates goals etc rather than single-shot QA.
+            \item one other idea could be to zoom in on the process of reasoning about vague expressions like gradable adjectives. For instance, given contextual descriptions of varying granularity, the pipeline might help to zoom in on the trade off between contextual information and general world knowledge for inferring aspects like the comparison class.
+        \end{itemize}
+    \item collecting a dataset for semantic parsing
+        \begin{itemize}
+            \item currently, the semantic parsing tests contain both examples from SuperGLUE and GLUE benchmarks as well as hand-created examples representative of the modeled communicative tasks. However, for the former, sometimes the annotated truth values need to be changed compared to the original benchmark depending on the prompt / question phrasing. For the latter, more examples could be created. Students could create larger versions of such parsing datasets.
+        \end{itemize}
+    \item applying the pipeline with other model backbones to check for possible advantages for models weaker than GPT-X
+        \begin{itemize}
+            \item LLaMA, OpenAssistant, GPT4All...
+            \item involves benchmarking their instruction-following / few-shot learning abilities to GPT
+        \end{itemize}
+    \item clarification questions: cf. self-critical and revising agents
+    \begin{itemize}
+        \item the pragmatic module could be augmented by reasoning about which action next to picking one of the available utterances to select. These alternative actions could be, e.g., asking clarification questions. This could be guided be reasoning about the uncertainty of the current information. \pt{uncertainty in LLMs is quite a big topic by itself; modeling the reasoning is also a non-trivial task, which could be solved most naively by recursively applying the SIFD pipeline to compare utilities od possible outcomes of different actions}
+    \end{itemize}
+    \item ``loopy agent'' going back to the step of generating possible utterance proposals whenever current set of options isn't useful
+    \begin{itemize}
+        \item involves the issue of putting a cap on the number of iterations the agent could loop for.
+        \item otherwise, a relatively straightforward recurrence over our current approach.
+    \end{itemize}
+    \item accuracy and variance estimation of the pipeline on a given task or for given sub-components
+    \begin{itemize}
+        \item for a module like the semantic parser, there is no available estimate of the variance of results across different calls of the API, as well as across different sampling temperature sampling or tested phenomena. Having this information based on rigorous testing would be very useful for estimating the performance of the overall system.
+        \item this requires sizable datasets of different phenomena as well as resources for running the evaluations.
+        \item one concern might be how generalizable / useful these results are across models, especially if we want to offer the pipeline as a cross-model solution and need to guarantee stable performance.
+    \end{itemize}
+\end{enumerate}
+
+
+\printbibliography[heading=bibintoc]
+
+\end{document}
