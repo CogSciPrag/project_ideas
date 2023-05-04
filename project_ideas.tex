@@ -54,39 +54,28 @@
 
 \section{LLM-chain related}
 
-Below some student project ideas which would help expand and substantiate the framework can be found.
+Below are some student project ideas which would help expand and substantiate the framework.
+
+\subsection{Testing i/o}
+
+Consists of testing griceChain on other datasets or evaluating the performance in general. Requires no or little change to the current griceChain codebase.
 
 \begin{enumerate}
-    \item applying SIFD to new datasets
+    \item Applying the griceChain implementation of the contrastive reference game to more pre-existing datasets.
         \begin{itemize}
-            \item to extend the reference game or grounded language use setting to more naturalistic datasets, Google search images or MS COCO images could be used.
-            \item integrating the image captioning endpoint for the utterance proposal based on actual images can be part of project or be implemented by us.
+            \item To extend the reference game or grounded language use setting to more naturalistic datasets, Google search images or MS COCO images could be used.
+            \item Integrating the image captioning endpoint for the utterance proposal based on actual images can be part of the project or be implemented by us.
         \end{itemize}
-    \item integrating new communicative tasks; extending the pipeline to more complex tasks could allow to show the advantages of the controlled pipeline more clearly
+        \item Collecting/constructing a dataset for semantic parsing
         \begin{itemize}
-            \item one idea that we discussed concerned the use of different compound utility functions (e.g., akin to argumentative language ideas or the inclusion of particular relevance representations) \pt{not sure about the details, needs to be fleshed out}
-            \item another idea is to focus on tasks which strongly show the advantage of considering in-situ generated alternatives generated. For instance, answering wh-questions (or questions in general) might require reasoning about the speaker's background knowledge (e.g., sensible information or goals the person might want to pursue). \pt{this is essentially a transfer / extension of the QA model to SIFD} Furthermore, the iterative pipeline might allow to model QA based on conversation history which updates goals etc rather than single-shot QA.
-            \item one other idea could be to zoom in on the process of reasoning about vague expressions like gradable adjectives. For instance, given contextual descriptions of varying granularity, the pipeline might help to zoom in on the trade off between contextual information and general world knowledge for inferring aspects like the comparison class.
+            \item Currently, the semantic parsing tests contain both examples from SuperGLUE and GLUE benchmarks as well as hand-created examples representative of the modeled communicative tasks. However, for the former, sometimes the annotated truth values need to be changed compared to the original benchmark depending on the prompt / question phrasing. For the latter, more examples could be created. Students could create larger versions of such parsing datasets.
         \end{itemize}
-    \item collecting a dataset for semantic parsing
-        \begin{itemize}
-            \item currently, the semantic parsing tests contain both examples from SuperGLUE and GLUE benchmarks as well as hand-created examples representative of the modeled communicative tasks. However, for the former, sometimes the annotated truth values need to be changed compared to the original benchmark depending on the prompt / question phrasing. For the latter, more examples could be created. Students could create larger versions of such parsing datasets.
-        \end{itemize}
-    \item applying the pipeline with other model backbones to check for possible advantages for models weaker than GPT-X
+            \item Applying the pipeline with other LLM backbones to check for possible advantages for models weaker than GPT-X
         \begin{itemize}
             \item LLaMA, OpenAssistant, GPT4All...
             \item involves benchmarking their instruction-following / few-shot learning abilities to GPT
         \end{itemize}
-    \item clarification questions: cf. self-critical and revising agents
-    \begin{itemize}
-        \item the pragmatic module could be augmented by reasoning about which action next to picking one of the available utterances to select. These alternative actions could be, e.g., asking clarification questions. This could be guided be reasoning about the uncertainty of the current information. \pt{uncertainty in LLMs is quite a big topic by itself; modeling the reasoning is also a non-trivial task, which could be solved most naively by recursively applying the SIFD pipeline to compare utilities od possible outcomes of different actions}
-    \end{itemize}
-    \item ``loopy agent'' going back to the step of generating possible utterance proposals whenever current set of options isn't useful
-    \begin{itemize}
-        \item involves the issue of putting a cap on the number of iterations the agent could loop for.
-        \item otherwise, a relatively straightforward recurrence over our current approach.
-    \end{itemize}
-    \item accuracy and variance estimation of the pipeline on a given task or for given sub-components
+    \item Accuracy and variance estimation of the pipeline on a given task or for given sub-components
     \begin{itemize}
         \item for a module like the semantic parser, there is no available estimate of the variance of results across different calls of the API, as well as across different sampling temperature sampling or tested phenomena. Having this information based on rigorous testing would be very useful for estimating the performance of the overall system.
         \item this requires sizable datasets of different phenomena as well as resources for running the evaluations.
@@ -94,10 +83,50 @@ Below some student project ideas which would help expand and substantiate the fr
     \end{itemize}
 \end{enumerate}
 
+\subsection{Extending the model to more tasks}
+
+Require more substantial code extensions/revisions, but is based mostly on previous literature. E.g., implement some other RSA model with SIFD.
+
+\begin{enumerate}
+		\item Extend griceChain to non-contrastive reference games.
+    \item Integrating new (e.g., more natural) communicative tasks beyond reference. Extending the pipeline to more complex or natural tasks could allow us to show the advantages of the controlled pipeline more clearly. This would require a bigger refactoring/extension of the current codebase.
+        \begin{itemize}
+            \item One idea that we discussed concerned the use of different utility functions. 
+            \begin{itemize}
+						    \item One natural extension here is to add argumentative strength to the utility function; the reason that this is natural is that argstrength in a Bayes factor/likratio implementation grounds out in a combo of semantic parser and state proposal. To implement this we need to add a state-proposer that proposes new states compatible with the utterance. For more look at the paper on argstrength RSA.
+						    \item Another idea is to use relevance (TODO)
+						\end{itemize}
+            \item Another idea is to generate possible speaker goals/preferences based on the utterance. For instance, answering wh-questions (or questions in general) might require reasoning about the speaker's background knowledge (e.g., sensible information or goals the person might want to pursue). \pt{This is essentially a transfer / extension of the QA model to SIFD} Furthermore, the iterative pipeline might allow to model QA based on conversation history which updates goals etc rather than single-shot QA.
+            \item One other idea could be to zoom in on the process of reasoning about vague expressions like gradable adjectives. For instance, given descriptions of utterance context, the pipeline might trade off between contextual information and general world knowledge for inferring aspects like the comparison class. E.g. a griceChain implementation of Qing \& Franke (2014).
+        \end{itemize}
+\end{enumerate}
+
+\subsection{Improving current griceChain implementation for discriminative reference games}
+
+This involves fairly substantial revisions to the code \& possibly even conceptual work.  Student would change griceChain in some way to improve the performance on current task. Possibly extend SIFD paradigm.
+
+\begin{enumerate}
+    \item Clarification questions: cf. self-critical and revising agents
+    \begin{itemize}
+        \item The pragmatic module could be augmented by reasoning about which action next to picking one of the available utterances to select. These alternative actions could be, e.g., asking clarification questions. This could be guided be reasoning about the uncertainty of the current information. \pt{uncertainty in LLMs is quite a big topic by itself; modeling the reasoning is also a non-trivial task, which could be solved most naively by recursively applying the SIFD pipeline to compare utilities od possible outcomes of different actions}
+    \end{itemize}
+    \item ``Loopy agent'' going back to the step of generating possible utterance proposals whenever current set of options isn't useful
+    \begin{itemize}
+        \item Involves the issue of putting a cap on the number of iterations the agent could loop for.
+        \item Otherwise, a relatively straightforward recurrence over our current approach.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Real world application}
+
+\begin{enumerate}
+\item Finding some real world use case for griceChain, exploiting its advantages over bare LLMs in terms of explainability and transparency.
+\end{enumerate}
+
 \section{Probing LLMs}
 \begin{itemize}
-	\item probing LLMs seems like one of the straightforward methods for investigating the representations they might be building up. 
-	\item following up on the discussion of whether LLMs do develop some form of understanding or reasoning and how to find that out, it would be great to get into the common methods hands-on. 
+	\item Probing LLMs seems like one of the straightforward methods for investigating the representations they might be building up. 
+	\item Following up on the discussion of whether LLMs do develop some form of understanding or reasoning and how to find that out, it would be great to get into the common methods hands-on. 
 	\item \pt{concrete applications tbd.}
 \end{itemize}
 
