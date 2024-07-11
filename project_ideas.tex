@@ -145,6 +145,36 @@ This involves fairly substantial revisions to the code \& possibly even conceptu
   \item \pt{concrete applications tbd.}
 \end{itemize}
 
+\section{Learning multi-hop reasoning from linguistic feedback}
+\begin{enumerate}
+	\item LMs often struggle with multi-hop question answering, like answering questions of the style ``Is the voice of the Genie from Disney’s Aladdin still alive?'', even with chain-of-thought prompting
+	\item One natural way to attempt to improve the performance is to provide llinguistic feedback correcting intermediate steps, given sample trajectories.
+	\item The project would attempt to fine-tune a model (e.g., GPT-2) for multi-hop QA (from some available dataset), utilizing linguistic feedback in the style of inverse reinforcement learning. The feedback integration could be adapted from \citep{sumers2021learning}
+	\item The feedback could be elicited from humans, or, for easier exploration, e.g., from GPT-4o.
+	\item The bigger question that this project could ask is: given different kinds of feedback, does the model learn certain (abstract) strategies? (e.g., always, first gathering all facts, and then combining them? decomposing the problem in a human-like way?)
+\end{enumerate}
+
+\section{System 1 vs. System 2 prompting / reasoning of LLMs}
+\begin{enumerate}
+	\item Noah once (half-)jokingly tweeted that CoT is the System-2 reasoning of LLMs. I haven't seen actual empirical investigations of that! It seems however that it has been accommodated into a lot of work on prompting strategies.
+	\item If there is (accessible) human data of humans performing the same task that could be easily converted into text in different contexts (i.e., intuitive S1 condition,~vs.~ ``attentive'' S2 condition), it would be fun to compare whether human S1 / S2 results align with LLM zero-shot / CoT results.
+	\item If the first part is feasible, a natural extension would be to try to train a model (e.g., with hierarchical RL) which would learn to flexibly switch between zero-shot and CoT task solutions (i.e., learn to "prompt itself" with CoT, when necessary). This would probably require introducing some cost term for the CoT, so that it's not exploted. Then, the task would be to analyse whether the ``switch between systems'' is human-like.  This would at least address the question whether systems can learn to flexibly switch between different generation modes in an economic / efficient way.
+\end{enumerate}
+
+\section{LLMs' sensitivity to social language cues}
+\begin{enumerate}
+	\item Inspired by work by \citet{burnett2019signalling} and \citet{beltrama2021imprecision}, this project investigates whether LLMs are sensitive to the (social) persona of the speaker, and whether the persona information affects how LLMs interpret speaker inputs.  
+	\item The project would (a) replicate the behavioral experiment by \citet{beltrama2021imprecision} wherein the interpretation of imprecision expressions is tested, given nerdy vs. chill speaker personas. (b) Test this across different conditions (e.g., different persona descriptions, whether the model takes on similar behavior if it is prompted to take on the persona itself) (c) Utilize attribution methods to investigate what drives model predictions.
+	\item The particular case study can be put in context of work like \citet{liu2024largelanguagemodelsnavigate}.
+\end{enumerate}
+
+\section{RLHF with model-based approaches}
+\begin{enumerate}
+	\item This might be a more advanced, most abstract project. The idea is that more-human like learning is based on re-using learned representations and information across different tasks / situations, which leads to more generalizable representations. 
+	\item The idea of the project would be to try to extend RLHF to apply (an approximation of) model-based RL, where the agent has to learn a model of the environment (intuitively, it should represent some more generalizable aspects of the environment). 
+	\item The project would add some additional objective, e.g., an additional prediction task or some bottleneck that would regularize towards more human-like representation learning. The project would test whether that leads to more human-like behavior of the LM (specific hypothesis TBD), as opposed to vanilla (more reward-hacking prone) fine-tuning.  One potential more concrete application could be personas (i.e., training models to take on personas consistently over longer interactions by making them maintain a listener model).
+\end{enumerate}
+
 \printbibliography[heading=bibintoc]
 
 \end{document}
