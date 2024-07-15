@@ -236,12 +236,12 @@ Building on a proof-of-concept example of referentia expression generation in a 
 	\item The bigger question that this project could ask is: given different kinds of feedback, does the model learn certain (abstract) strategies? (e.g., always, first gathering all facts, and then combining them? decomposing the problem in a human-like way?)
 \end{enumerate}
 
-\section{System 1 vs. System 2 prompting / reasoning \& LLMs}
-\begin{enumerate}
-	\item Researchers in the field have stated that the difference between zero-shot and CoT prompting in LLMs is the same one as between system 1 and system 2 reasoning of humans.  It seems that this assumption has been accommodated into a lot of work on prompting strategies. The goal of this project is to conduct careful empirical or conceptual comparison between huamns and LMs.
-	\item If there is (accessible) human data of humans performing the same task that could be easily converted into text in different contexts (i.e., intuitive S1 condition,~vs.~ ``attentive'' S2 condition), it would be fun to compare whether human S1 / S2 results align with LLM zero-shot / CoT results.
-	\item \textcolor{gray}{(extensions, e.g., for theses)} If the first part is feasible, a natural extension would be to try to train a model (e.g., with hierarchical RL) which would learn to flexibly switch between zero-shot and CoT task solutions (i.e., learn to "prompt itself" with CoT, when necessary). This would probably require introducing some cost term for the CoT, so that it's not exploted. Then, the task would be to analyse whether the ``switch between systems'' is human-like.  This would at least address the question whether systems can learn to flexibly switch between different generation modes in an economic / efficient way.
-\end{enumerate}
+%\section{System 1 vs. System 2 prompting / reasoning \& LLMs}
+%\begin{enumerate}
+%	\item Researchers in the field have stated that the difference between zero-shot and CoT prompting in LLMs is the same one as between system 1 and system 2 reasoning of humans.  It seems that this assumption has been accommodated into a lot of work on prompting strategies. The goal of this project is to conduct careful empirical or conceptual comparison between huamns and LMs.
+%	\item If there is (accessible) human data of humans performing the same task that could be easily converted into text in different contexts (i.e., intuitive S1 condition,~vs.~ ``attentive'' S2 condition), it would be fun to compare whether human S1 / S2 results align with LLM zero-shot / CoT results.
+%	\item \textcolor{gray}{(extensions, e.g., for theses)} If the first part is feasible, a natural extension would be to try to train a model (e.g., with hierarchical RL) which would learn to flexibly switch between zero-shot and CoT task solutions (i.e., learn to "prompt itself" with CoT, when necessary). This would probably require introducing some cost term for the CoT, so that it's not exploted. Then, the task would be to analyse whether the ``switch between systems'' is human-like.  This would at least address the question whether systems can learn to flexibly switch between different generation modes in an economic / efficient way.
+%\end{enumerate}
 
 \section{LLMs' sensitivity to social language cues}
 \begin{enumerate}
