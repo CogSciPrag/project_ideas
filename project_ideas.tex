@@ -19,10 +19,20 @@
 \section{LMs for prior elicitation for probabilistic cognitive models}
 
 \begin{enumerate}
-  \item probabilistic cognitive models often rely on human data to estimate (statistical) world knowledge
+  \item prior elicitation experiments are used to learn about what humans believe, because this is useful for many applications:
+  \begin{itemize}
+    \item in Bayesian statistical models, we sometimes want expert opinions to inform the priors over relevant paramerters
+    \item probabilistic cognitive models often rely on human data to estimate (statistical) world knowledge, so that the model can make adequate predictions about more downstream variables of interest
+    \item it may often also be an end in itself to see what people (individuals or the crowd on average) beliefs
+  \end{itemize}
+  \item there is a large strand of literature on experimental techniques for eliciting prior information (e.g., economics, psychometrics, cognitive science \dots)
   \item running prior elicitation experiments is costly, and there are many degrees of freedom in eliciting responses and in interpreting raw data (how to scale / interpret slider ratings etc.)
   \item this project could investigate if we can use LLMs, properly prompted, to elicit prior judgements instead of human participants
+  \item this would be exploratory work (hence creative and fun) and could involve:
   \begin{itemize}
+    \item use extant data sets from humans (available!) to compare against LMs
+    \item try different prompting methods or other ways of operationalizing the task
+    \item try in-context learning
     \item try out different personalities in system prompt
     \item check if judgements agree with human judgements
     \item check if model predictions are worse or better than with human priors
@@ -32,31 +42,35 @@
 \section{Relevance judgements and LLMs}
 
 \begin{enumerate}
+  \item similar to the previous project, but focusing on human judgements of relevance
+  \begin{itemize}
+    \item relevance judgements are relevant for, e.g., reinforcement learning with machine feedback or open-ended cognitive modeling
+  \end{itemize}
   \item probe the human-likeness of LLM's relevance judgements w/ and w/o prompting
-  \item compare to human data
+  \item compare to human data (which we already have)
 \end{enumerate}
 
-\section{How false beliefs spread through language}
+% \section{How false beliefs spread through language}
 
-\subsection{Argumentative RSA agents}
+% \subsection{Argumentative RSA agents}
 
-\begin{itemize}
-  \item run a multi-agent simulation, similar to prior literature \citep{Zollman2013:Network-Epistem}, on how false beliefs spread and amplify in a social network
-  \begin{itemize}
-    \item agents observe data from experiments
-    \item in previous work: agents showed their data to other agents
-    \item here: agents describe their findings in language
-    \item use RSA model with argumentative speakers
-    \item listeners can be naive or argumentation-aware
-    \item check impact on false belief propagation
-  \end{itemize}
-\end{itemize}
+% \begin{itemize}
+%   \item run a multi-agent simulation, similar to prior literature \citep{Zollman2013:Network-Epistem}, on how false beliefs spread and amplify in a social network
+%   \begin{itemize}
+%     \item agents observe data from experiments
+%     \item in previous work: agents showed their data to other agents
+%     \item here: agents describe their findings in language
+%     \item use RSA model with argumentative speakers
+%     \item listeners can be naive or argumentation-aware
+%     \item check impact on false belief propagation
+%   \end{itemize}
+% \end{itemize}
 
-\subsection{Argumentative RSA agents}
+% \subsection{Argumentative RSA agents}
 
-\begin{itemize}
-  \item as before but with griceChain agents instead of RSA
-\end{itemize}
+% \begin{itemize}
+%   \item as before but with griceChain agents instead of RSA
+% \end{itemize}
 
 \section{LLMs and causal reasoning}
 
@@ -65,6 +79,58 @@
 \begin{itemize}
   \item use LLMs to ``construct'' intuitive causal models of everyday events
   \item test whether there are biases (e.g., towards specific causal structures)
+\end{itemize}
+
+
+\subsection{Compare causal language use in humans and LMs}
+
+\begin{itemize}
+  \item there is a growing experimental literature on \emph{causal attribution}, which is the problem of selecting one or few causes from (in principle) unboundedly many physical causes of any given event
+  \item humans have shared preferences for which event to single out as ``the'' (single) actual case
+  \item these intuitions seems to be informed by both statistical frequencies of events and normative factors \citep{IcardKominsky2017:Normality-and-a,QuillienLucas2023:Counterfactuals}
+  \item this project would investigate whether current LMs show the same behavioral patterns as humans in identifying actual causes
+  \begin{itemize}
+    \item involves scavenging the literature for experimental material
+    \item possibly generating new material (to avoid data contamination), maybe using LMs for automatization
+    \item running a benchmark test (multiple-choice) with some current SOTA LMs
+    \item benchmark data set could be publicly shared if curated well enough
+  \end{itemize}
+\end{itemize}
+
+
+\section{Literature surveys}
+
+\textbf{Remark:} You might think that it is a dull project to read a bunch of papers on the same topic, summarize and critically discuss them.
+You may think that this is what losers do.
+Or people from the far past, like in 2019.
+BUT: if you do, you couldn't be more wrong.
+With current intelligent assistants that can code, what the future needs are people to read the trends and decide on what is missing from or wrong with the status quo.
+A literature project trains exactly this skill, more than any other more practical project would.
+
+\begin{itemize}
+  \item in a literature survey you start with 3-5 key papers on a single topic
+  \item you develop a deep understanding of the topic, possibly search for more papers on it
+  \item you summarize different approaches or positions, and build your own critical opinion on benefits, problems, omissions etc.
+  \item this is an exercise in deep work, critical thinking and clear writing (all of which are invaluable skills)
+  \item topics you could look at:
+  \begin{itemize}
+    \item surprisal theory, next-word probabilities and modern LLMs (maybe branching out to calibration)
+    \item current state of discussion on calibration of LLMs
+    \item could or should LMs replace experimental participants in psychology or neighboring areas?
+    \item overview over one or several recent techniques for mechanistic interpretability
+    \item overview over cognitive agent models incorporating LMs
+    \item overview over LM abilities in a particular domain (Theory of Mind, syntax, causal reasoning, ethical judgements \dots)
+    \item best practices of LM evaluation with benchmarks or behavioral experiments
+    \item recent discussion about in-context impersonation (how LMs might be used to mimic particular subpopulations (angry white men \dots))
+  \end{itemize}
+\end{itemize}
+
+\section{Methods for assessing LM predictions in multiple-choice experiments}
+
+\begin{itemize}
+  \item this project would scale up existing work on the comparison of different methods of determining the predictions of an LM for a multiple-choice task \citep{TsvilodubWang2024:Predictions-fro}
+  \item while the previous work only look at a few LMs and a very small selection of data sets, this project would extend the methodological comparison to a larger set of LMs and data sets (e.g., from BigBench)
+  \item the project could also additionally pay mind to ``prediction calibration methods'' \citep{ZhaoWallace2021:Calibrate-Befor,HoltzmanWest2021:Surface-Form-Co}
 \end{itemize}
 
 \section{LLM-chain related}
