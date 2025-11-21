@@ -10,11 +10,68 @@
 
 
 \title{Project ideas}
-\author{Michael Franke, Polina Tsvilodub}
+\author{Michael Franke, Polina Tsvilodub, Andreas Waldis}
 \date{Last compiled: \today}
 
 \begin{document}
 \maketitle
+
+\section{Methodological Robustness of Assessing Information within LMs}
+
+This project is about implementing and verifying experimental code to study the robustness of methods to assess how information is encoded and propagated within language models. 
+
+\paragraph{Background}
+A language model transforms information from input tokens across its layers to produce a subsequent output text. 
+Given this fundamental role of information, it is essential to study what types of information these models contain, which portions are relevant to producing the output, and whether this insight aligns with human intuition for the specific task these models are given. 
+Typically, we use a simple linear model (\textit{probes}) as sensors to approximate information within language models \citep{belinkov-2022-probing}. 
+For example, we use internal representations and train linear models on the toxicity level of the input text to determine whether information in the input internals correlates with the input toxicity, as in \citep{waldis2025aligned}. 
+Since we need data representing the to-be-probed property (such as the input toxicity), the results and subsequent conclusions are entangled with the specific probing task design. 
+In the case of toxicity, where we have a continuous value ranging from 0 (not toxic) to 1 (toxic), we intuitively formulate the probing task as a linear regression problem. 
+Alternatively, we could bin the toxicity scores into three classes (\textit{low}, \textit{medium}, and \textit{high}) and use a logistic regression as a probe. 
+But in doing so, we ignore that the ordering of these three classes is relevant. 
+Accounting for the fact, ordinal regression considers the fact that the \textit{low} class is not only another class than \textit{medium} and \textit{high} but really \textbf{lower}.
+
+\paragraph{Project Details}
+Given these different ways of probing information, we may reach different conclusions (for example, which layer encodes the most information about toxicity) depending on the specific probing task design, such as linear, logistic, or ordinal regression. 
+The goal of this project is to provide an experimental ground for comparing such varied probing designs and to verify the resulting code with a small case study. 
+Specifically, it could include the following parts:
+\begin{itemize}
+    \item Familiarize with the existing code base (Python).
+    \item Implementing dataset transformation from continuous scores to classes. 
+    \item Implementing the ordinal regression model. 
+    \item Implementing the code to support other language models, like encoder-decoder or text-diffusion models.
+    \item Further abstract the core functionalities of the code to make it more reusable, including: 
+    \begin{itemize}
+        \item probing dataset structure
+        \item model inference and dumping of internals
+        \item running probing experiments
+        \item automatically gathering and aggregating results
+        \item  intervention on model internals to verify that information is causally relevant
+    \end{itemize}
+    \item Case study, where we apply all these steps to verify these steps using a simple setup of two probing tasks and two different language models.
+\end{itemize}
+
+
+\section{Crowd-Sourcing Model Internal Interpretability Research}
+This project aims to build a codebase that allows saving and donating model internals (such as internal representations or string probabilities) during inference, as well as a small UI/API that allows other researchers to explore these donated internals based on metadata like specific language model, input prompt, generated text, text toxicity, and text sentiment. 
+
+\paragraph{Background}
+Current research predominantly relies on model behavior (generated text given a specific input) to evaluate language models. 
+However, as inputs and outputs are often hard to exactly reproduce, we incur substantial computational expense, as model internals (emerging during the forward pass) are not stored since they are typically not in the research scope. 
+As a result, interpretability research that focuses on a comprehensive model perspective and jointly assesses model behavior and internals cannot benefit from the majority of the conducted experiments.
+Instead, one needs to replicate and rerun behavioral experiments to access the model internals and study models comprehensively. 
+
+\paragraph{Project}
+
+The central goal of this project is to build a small code library and a minimal demonstrator that can be easily integrated into behavioral assessments of language models. 
+Specifically, this could include the following parts:
+\begin{itemize}
+    \item Allowing to automatically save model internals along with metadata, when using language models.
+    \item Setting up a simple data structure to store these dumps
+    \item Implementing a simple UI or API that allows querying specific internals of interest. For example, I would like to get all the internals from a particular task. 
+\end{itemize}
+
+
 
 \section{LMs for prior elicitation for probabilistic cognitive models}
 
